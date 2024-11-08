@@ -7,18 +7,19 @@ cursor = conexao.cursor()
 
 # Criando uma tabela
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS vendas1(
-       id_venda, INTEGER PRIMARY KEY AUTOINCREMENT
-       data_venda DATE,
-       produto TEXT,
-       categoria TEXT,
-       valor_venda REAL
+CREATE TABLE IF NOT EXISTS vendas1 (
+    id_venda INTEGER PRIMARY KEY AUTOINCREMENT,
+    data_venda DATE,
+    produto TEXT,
+    categoria TEXT,
+    valor_venda REAL
 )
 ''')
 
 # Inserindo os dados para tabela
+
 cursor.execute('''
-INSET INTO vendas1(data_venda, produto, categoria, valor_venda) VALUES
+INSERT INTO vendas1 (data_venda, produto, categoria, valor_venda) VALUES
 ('2023-01-01', 'Produto A', 'Eletrônicos', 1500.00),
 ('2023-01-05', 'Produto B', 'Roupas', 350.00),
 ('2023-02-10', 'Produto C', 'Eletrônicos', 1200.00),
@@ -65,5 +66,14 @@ sns.barplot(x=total_vendas_categoria.index, y=total_vendas_categoria.values)
 plt.title('Total de Vendas por Categoria')
 plt.xlabel('Categoria')
 plt.ylabel('Total de Vendas')
+plt.xticks(rotation=45)
+plt.show()
+
+# Criando grafico por media de venda dos produtos
+plt.figure(figsize=(10,6))
+sns.barplot(x=media_vendas_produto.index, y=media_vendas_produto.values)
+plt.title('Média de Vendas por Produto')
+plt.xlabel('Produto')
+plt.ylabel('Média de Vendas')
 plt.xticks(rotation=45)
 plt.show()
